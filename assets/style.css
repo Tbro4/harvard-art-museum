@@ -1,1 +1,11 @@
+header {
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 2em;
+}
 
+header button {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}

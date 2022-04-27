@@ -17,6 +17,97 @@
     <title>Harvard Art Museum Explorer</title>
 </head>
 <body>
+    <!-- title with "favorites" btn -->
+    <header class="header">
+        <h1>Harvard Art Museum Explorer</h1>
+        <button type="button" class="btn btn-primary">Favorites</button>
+
+        
+    </header>
+
+    <!-- front page div -->
+    <div class="frontPage container border border-4 border-primary rounded text-center col-8 ">
+        <h2>Please select techniques that you would like to see showcased!</h2>
+        <!-- buttons for techniques -->
+        <form id="buttonGroup">
+            <input type="checkbox" class="btn-check" id="btncheck1" value="Wood engraving" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck1">Wood engraving</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck2" value="Screen print" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck2">Screen print</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck3" value="Wheel-made" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck3">Wheel-made</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck4" value="Pigment print" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck4">Pigment print</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck5" value="Etching and mezzotint" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck5">Etching and mezzotint</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck6" value="Carved" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck6">Carved</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck7" value="Woven" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck7">Woven</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck8" value="Handmade" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck8">Handmade</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck9" value="Painted" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck9">Painted</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck10" value="20 x 24 Polaroid print" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck10">20 x 24 Polaroid print</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck11" value="Embroidery" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck11">Embroidery</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck12" value="Molded" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck12">Molded</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck13" value="Cast" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck13">Cast</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck14" value="Woodcut" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck14">Woodcut</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck15" value="Engraving" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck15">Engraving</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck16" value="Etching" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck16">Etching</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck17" value="Struck" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck17">Struck</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck18" value="Gelatin silver print" autocomplete="off">
+            <label class="btn btn-outline-primary m-1" for="btncheck18">Gelatin silver print</label>
+
+            
+        
+
+        <h4>When you hit "Submit" you will be shown two randomly selected pictures of art based on at least one of the techniques chosen.</h4>
+
+        <button id= "submitBtn" type="submit" class="btn btn-primary m-1">Submit</button>
+
+        </div>
+
+       
+    
+    </div>
+
+
+    <!-- dynamicly generated pics -->
+    <div class="pics container"></div>
+
+
+    <!-- choosen pic info and song playing -->
+    <div class="picInfo container"></div>
+
+
+    <!-- Display page with favorited images as links -->
+    <div class="myFaves container"></div>
 
 
 
