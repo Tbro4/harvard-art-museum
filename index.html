@@ -21,8 +21,6 @@
     <header class="header">
         <h1>Harvard Art Museum Explorer</h1>
         <button type="button" class="btn btn-primary">Favorites</button>
-
-        
     </header>
 
     <!-- front page div -->
@@ -90,22 +88,15 @@
             <input type="checkbox" class="btn-check" id="btncheck20" value="White ware" autocomplete="off">
             <label class="btn btn-outline-primary m-1" for="btncheck20">White ware</label>
 
-            
-        
+            <h4>When you hit "Submit" you will be shown two randomly selected pictures of art based on at least one of the techniques chosen.</h4>
 
-        <h4>When you hit "Submit" you will be shown two randomly selected pictures of art based on at least one of the techniques chosen.</h4>
+            <button id= "submitBtn" type="submit" class="btn btn-primary m-1">Submit</button>
 
-        <button id= "submitBtn" type="submit" class="btn btn-primary m-1">Submit</button>
-
-        </div>
-
-       
-    
+        </form>
     </div>
 
-
     <!-- dynamicly generated pics -->
-    <div class="pics container"></div>
+    <div class="pics container border border-4 border-primary rounded text-center col-8 hidden"></div>
 
 
     <!-- choosen pic info and song playing -->

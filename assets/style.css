@@ -9,3 +9,7 @@ header button {
   right: 1em;
   top: 1em;
 }
+
+.hidden {
+  display: none;
+}
