@@ -70,12 +70,34 @@ document.querySelector("#submitBtn").addEventListener("click", function (e) {
             console.log(data);
             var primaryImageURL = data.primaryimageurl;
             console.log(primaryImageURL);
-            //create dynamic elements
-            var pic = $("<img>");
 
-            pic.attr("src", primaryImageURL);
+            var cardDiv = $("<div>");
+            var cardBdyDiv = $("<div>");
+            var imageLink = $("<a>");
+            var image = $("<img>");
+            var button = $("<a>");
 
-            $(".pics").append(pic);
+            cardDiv.addClass("card col-lg-6 col-sm-12");
+            cardBdyDiv.addClass("card-body");
+            imageLink.attr({ href: primaryImageURL, target: "_blank" });
+
+            image.attr({
+              src: primaryImageURL,
+              class: "card-img-top",
+              alt: "...",
+            });
+
+            imageLink.append(image);
+
+            button
+              .attr({ href: primaryImageURL, class: "btn btn-primary" })
+              .text("Favorite");
+
+            cardBdyDiv.append(button);
+
+            cardDiv.append(imageLink, cardBdyDiv);
+
+            $(".pics").append(cardDiv);
 
             //show pics div
             $(".pics").removeClass("hidden");

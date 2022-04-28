@@ -22,9 +22,9 @@
         <h1>Harvard Art Museum Explorer</h1>
         <button type="button" class="btn btn-primary">Favorites</button>
     </header>
-
+    <main class="container border border-4 border-primary rounded text-center col-8" >
     <!-- front page div -->
-    <div class="frontPage container border border-4 border-primary rounded text-center col-8 ">
+    <section class="frontPage ">
         <h2>Please select techniques that you would like to see showcased!</h2>
         <!-- buttons for techniques -->
         <form id="buttonGroup">
@@ -93,18 +93,23 @@
             <button id= "submitBtn" type="submit" class="btn btn-primary m-1">Submit</button>
 
         </form>
-    </div>
+    </section>
 
     <!-- dynamicly generated pics -->
-    <div class="pics container border border-4 border-primary rounded text-center col-8 hidden"></div>
+    <section class="pics row hidden">
+        <h3>Please choose your favorite image. Click on the image to see a larger size.</h3>
+        
+    </section>
 
 
     <!-- choosen pic info and song playing -->
-    <div class="picInfo container"></div>
+    <section class="picInfo container"></section>
 
 
     <!-- Display page with favorited images as links -->
-    <div class="myFaves container"></div>
+    <section class="myFaves container"></section>
+
+    </main>
 
 
 
