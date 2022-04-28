@@ -13,6 +13,8 @@ var ids = [];
 //needs to hide div, make API call, show new div with pics
 document.querySelector("#submitBtn").addEventListener("click", function (e) {
   e.preventDefault();
+  //hide frontPage
+  $(".frontPage").addClass("hidden");
   //checks to see which buttons have been selected and pushes their value to an array
   var form = document.querySelector("#buttonGroup");
   Array.from(form.querySelectorAll("input")).forEach(function (inp) {
@@ -51,5 +53,33 @@ document.querySelector("#submitBtn").addEventListener("click", function (e) {
         }
       }
       console.log(ids);
+
+      for (i = 0; i < 4; i++) {
+        //URL variable used to fetch the specific object data by its ID. Then we will use that data to grab primaryimageurl
+        var idCall =
+          "https://api.harvardartmuseums.org/object/" +
+          ids[i] +
+          "?apikey=" +
+          APIkey;
+
+        fetch(idCall)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            var primaryImageURL = data.primaryimageurl;
+            console.log(primaryImageURL);
+            //create dynamic elements
+            var pic = $("<img>");
+
+            pic.attr("src", primaryImageURL);
+
+            $(".pics").append(pic);
+
+            //show pics div
+            $(".pics").removeClass("hidden");
+          });
+      }
     });
 });
