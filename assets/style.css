@@ -14,8 +14,9 @@ header button {
   display: none;
 }
 
+/* keeps card images equal size */
 .card-img-top {
   width: 100%;
-  height: 15vw;
+  height: 30vw;
   object-fit: contain;
 }
