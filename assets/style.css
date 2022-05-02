@@ -5,8 +5,8 @@ header {
 }
 
 header button {
-  position: absolute;
-  right: 1em;
+  position: relative;
+  left: 1em;
   top: 1em;
 }
 

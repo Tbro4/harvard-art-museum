@@ -20,7 +20,9 @@
     <!-- title with "favorites" btn -->
     <header class="header">
         <h1>Harvard Art Museum Explorer</h1>
-        <button type="button" class="btn btn-primary">Favorites</button>
+        <button type="button" class="btn btn-primary" id="savedFavorites">Favorites</button>
+        <button type="button" class="btn btn-primary" id="homepage">Homepage</button>
+       
     </header>
     <main class="container border border-4 border-primary rounded text-center col-8" >
     <!-- front page div -->
@@ -107,7 +109,7 @@
 
 
     <!-- Display page with favorited images as links -->
-    <section class="myFaves container"></section>
+    <section class="myFaves row container hidden"> <button type="button" class="btn btn-primary" id="clearFavorites">Clear Favorites</button></section>
 
     </main>
 

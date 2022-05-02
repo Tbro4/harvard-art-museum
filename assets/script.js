@@ -5,8 +5,80 @@ var techniqueChoices = [];
 var techniques;
 //holds id #s to dynamically generate pics
 var ids = [];
+var favoritesArr = [];
 
 var idCall;
+
+//Homepage button
+$("#homepage").on("click", function () {
+  console.log("clicked");
+  location.reload();
+});
+
+//loads favorites from storage
+function loadFaves() {
+  $(".frontPage").addClass("hidden");
+  $(".pics").addClass("hidden");
+  $(".picInfo").addClass("hidden");
+  $(".myFaves").removeClass("hidden");
+
+  var loadData = localStorage.getItem("Favorites(IDs)");
+
+  if (loadData != null) {
+    var favoritesArr = JSON.parse(loadData);
+  } else {
+    var favoritesArr = [];
+  }
+
+  for (i = 0; i < favoritesArr.length; i++) {
+    var objectURL =
+      "https://api.harvardartmuseums.org/object/" +
+      favoritesArr[i] +
+      "?apikey=" +
+      APIkey;
+
+    fetch(objectURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var primaryImageURL = data.primaryimageurl;
+        //make card elements
+        var title = $("<h3>");
+        var cardDiv = $("<div>");
+        var cardBdyDiv = $("<div>");
+        var imageLink = $("<a>");
+        var image = $("<img>");
+        //fill card elements with classes,data,etc
+        cardDiv.addClass("card col-lg-6 col-sm-12");
+        cardBdyDiv.addClass("card-body");
+        imageLink.attr({ href: primaryImageURL, target: "_blank" });
+        image.attr({
+          src: primaryImageURL,
+          class: "card-img-top",
+          alt: "...",
+        });
+        imageLink.append(image);
+        title.text(data.title);
+
+        //append elements to pics section
+
+        cardDiv.append(title, imageLink, cardBdyDiv);
+        $(".myFaves").append(cardDiv);
+      });
+  }
+}
+
+//clear favorites
+$("#clearFavorites").on("click", function () {
+  localStorage.clear();
+  console.log("cleared");
+  //clears the div of pics and "clear button"
+  $(".myFaves").html("");
+});
+
+//Favorites button
+$("#savedFavorites").on("click", loadFaves);
 
 //reference to the pics container for button event bubbling (cannot listen for dynamically created buttons without this)
 var picsContainer = document.querySelector(".pics");
@@ -21,6 +93,20 @@ picsContainer.addEventListener("click", function (e) {
 
     //fetching endpoint using targets ID and appending to picInfo container
     objectID = e.target.getAttribute("data-id");
+
+    var loadData = localStorage.getItem("Favorites(IDs)");
+    console.log(loadData);
+
+    if (loadData != null) {
+      var favoritesArr = JSON.parse(loadData);
+    } else {
+      var favoritesArr = [];
+    }
+    favoritesArr.push(objectID);
+    localStorage.setItem("Favorites(IDs)", JSON.stringify(favoritesArr));
+
+    console.log(favoritesArr);
+
     // console.log(objectID);
     var objectURL =
       "https://api.harvardartmuseums.org/object/" +
