@@ -1,0 +1,35 @@
+{
+  "name": "harvard-art-museum",
+  "version": "1.0.0",
+  "description": "adding bootstrap v5 with sass",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch scss:assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tbro4/harvard-art-museum.git"
+  },
+  "keywords": [
+    "Bootstrap",
+    "bootstrap-v5",
+    "sass",
+    "harvard"
+  ],
+  "author": "Tyler Brooks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tbro4/harvard-art-museum/issues"
+  },
+  "homepage": "https://github.com/Tbro4/harvard-art-museum#readme",
+  "devDependencies": {
+    "sass": "^1.51.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "autoprefixer": "^10.4.7",
+    "bootstrap": "^5.1.3",
+    "postcss": "^8.4.13",
+    "postcss-cli": "^9.1.0"
+  }
+}

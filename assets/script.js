@@ -1,4 +1,4 @@
-var APIkey = "a019a706-259c-4a2f-9933-1f3c5d716d8a";
+var APIkey = "af0d3bac-821d-462a-948e-2e39c2634b42";
 //values from each checked button
 var techniqueChoices = [];
 //string values together to place in URL endpoint
@@ -87,7 +87,6 @@ var picsContainer = document.querySelector(".pics");
 picsContainer.addEventListener("click", function (e) {
   //check if we are clicking a Favorite button, then do something
   if (e.target.classList.contains("favBtn")) {
-    // console.log(e.target);
     //hide pics section
     $(".pics").addClass("hidden");
 
@@ -95,7 +94,6 @@ picsContainer.addEventListener("click", function (e) {
     objectID = e.target.getAttribute("data-id");
 
     var loadData = localStorage.getItem("Favorites(IDs)");
-    console.log(loadData);
 
     if (loadData != null) {
       var favoritesArr = JSON.parse(loadData);
@@ -105,9 +103,6 @@ picsContainer.addEventListener("click", function (e) {
     favoritesArr.push(objectID);
     localStorage.setItem("Favorites(IDs)", JSON.stringify(favoritesArr));
 
-    console.log(favoritesArr);
-
-    // console.log(objectID);
     var objectURL =
       "https://api.harvardartmuseums.org/object/" +
       objectID +
@@ -119,16 +114,24 @@ picsContainer.addEventListener("click", function (e) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-
         //dynamically create elements
         var img = $("<img>");
         var title = $("<h2>");
-        var century = $("<h4>");
-        var period = $("<h4>");
-        var division = $("<h4>");
-        var technique = $("<h4>");
-        var medium = $("<h4>");
+        var centuryHead = $("<h4>");
+        var century = $("<span>");
+        var centuryContent = $("<span>");
+        var periodHead = $("<h4>");
+        var period = $("<span>");
+        var periodContent = $("<span>");
+        var divisionHead = $("<h4>");
+        var division = $("<span>");
+        var divisionContent = $("<span>");
+        var techniqueHead = $("<h4>");
+        var technique = $("<span>");
+        var techniqueContent = $("<span>");
+        var mediumHead = $("<h4>");
+        var medium = $("<span>");
+        var mediumContent = $("<span>");
 
         img.attr({
           src: data.primaryimageurl,
@@ -138,31 +141,41 @@ picsContainer.addEventListener("click", function (e) {
         });
         //use if statements to keep null values from appearing
         if (data.title !== null) {
-          title.text(data.title);
+          title.text(data.title).addClass("itemTitle");
         }
         if (data.century !== null) {
-          century.text("Century: " + data.century);
+          century.text("Century: ").addClass("category");
+          centuryContent.text(data.century).addClass("content");
+          centuryHead.append(century, centuryContent);
         }
         if (data.period !== null) {
-          period.text("Period: " + data.period);
+          period.text("Period: ").addClass("category");
+          periodContent.text(data.period).addClass("content");
+          periodHead.append(period, periodContent);
         }
         if (data.division !== null) {
-          division.text("Division: " + data.division);
+          division.text("Division: ").addClass("category");
+          divisionContent.text(data.division).addClass("content");
+          divisionHead.append(division, divisionContent);
         }
         if (data.technique !== null) {
-          technique.text("Technique: " + data.technique);
+          technique.text("Technique: ").addClass("category");
+          techniqueContent.text(data.technique).addClass("content");
+          techniqueHead.append(technique, techniqueContent);
         }
         if (data.medium !== null) {
-          medium.text("Medium: " + data.medium);
+          medium.text("Medium: ").addClass("category");
+          mediumContent.text(data.medium).addClass("content");
+          mediumHead.append(medium, mediumContent);
         }
 
         $(".picInfo").append(
           title,
-          century,
-          period,
-          division,
-          technique,
-          medium,
+          centuryHead,
+          periodHead,
+          divisionHead,
+          techniqueHead,
+          mediumHead,
           img
         );
       });
