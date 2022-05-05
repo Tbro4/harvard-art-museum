@@ -49,6 +49,8 @@ function loadFaves() {
         var cardBdyDiv = $("<div>");
         var imageLink = $("<a>");
         var image = $("<img>");
+        var infoButton = $("<button>");
+
         //fill card elements with classes,data,etc
         cardDiv.addClass("card col-lg-6 col-sm-12");
         cardBdyDiv.addClass("card-body");
@@ -61,18 +63,111 @@ function loadFaves() {
         imageLink.append(image);
         title.text(data.title);
 
+        infoButton
+          .attr({ class: "btn btn-primary infoBtn", "data-id": data.id })
+          .text("Info");
+
         //append elements to pics section
 
-        cardDiv.append(title, imageLink, cardBdyDiv);
+        cardDiv.append(title, infoButton, imageLink, cardBdyDiv);
         $(".myFaves").append(cardDiv);
       });
   }
 }
 
+var infoBtns = document.querySelector(".myFaves");
+
+infoBtns.addEventListener("click", function (e) {
+  if (e.target.classList.contains("infoBtn")) {
+    //clear previous pic info
+    $(".picInfo").html("");
+    $(".myFaves").addClass("hidden");
+
+    objectID = e.target.getAttribute("data-id");
+
+    var objectURL =
+      "https://api.harvardartmuseums.org/object/" +
+      objectID +
+      "?apikey=" +
+      APIkey;
+
+    fetch(objectURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //dynamically create elements
+        var img = $("<img>");
+        var title = $("<h2>");
+        var centuryHead = $("<h4>");
+        var century = $("<span>");
+        var centuryContent = $("<span>");
+        var periodHead = $("<h4>");
+        var period = $("<span>");
+        var periodContent = $("<span>");
+        var divisionHead = $("<h4>");
+        var division = $("<span>");
+        var divisionContent = $("<span>");
+        var techniqueHead = $("<h4>");
+        var technique = $("<span>");
+        var techniqueContent = $("<span>");
+        var mediumHead = $("<h4>");
+        var medium = $("<span>");
+        var mediumContent = $("<span>");
+
+        img.attr({
+          src: data.primaryimageurl,
+          class: "img-responsive m-1",
+          width: "100%",
+          height: "auto",
+        });
+        //use if statements to keep null values from appearing
+        if (data.title !== null) {
+          title.text(data.title).addClass("itemTitle");
+        }
+        if (data.century !== null) {
+          century.text("Century: ").addClass("category");
+          centuryContent.text(data.century).addClass("content");
+          centuryHead.append(century, centuryContent);
+        }
+        if (data.period !== null) {
+          period.text("Period: ").addClass("category");
+          periodContent.text(data.period).addClass("content");
+          periodHead.append(period, periodContent);
+        }
+        if (data.division !== null) {
+          division.text("Division: ").addClass("category");
+          divisionContent.text(data.division).addClass("content");
+          divisionHead.append(division, divisionContent);
+        }
+        if (data.technique !== null) {
+          technique.text("Technique: ").addClass("category");
+          techniqueContent.text(data.technique).addClass("content");
+          techniqueHead.append(technique, techniqueContent);
+        }
+        if (data.medium !== null) {
+          medium.text("Medium: ").addClass("category");
+          mediumContent.text(data.medium).addClass("content");
+          mediumHead.append(medium, mediumContent);
+        }
+
+        $(".picInfo").append(
+          title,
+          centuryHead,
+          periodHead,
+          divisionHead,
+          techniqueHead,
+          mediumHead,
+          img
+        );
+      });
+    $(".picInfo").removeClass("hidden");
+  }
+});
+
 //clear favorites
 $("#clearFavorites").on("click", function () {
   localStorage.clear();
-  console.log("cleared");
   //clears the div of pics and "clear button"
   $(".myFaves").html("");
 });
